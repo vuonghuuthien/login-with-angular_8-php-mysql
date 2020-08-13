@@ -1,4 +1,10 @@
 <?php
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Credentials: true');
+    header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header("Content-Type: application/json; charset=UTF-8");
+
     // $DB_HOST = '.\\'; // Host name //localhost
     // $DB_USER = 'sa'; // Host Username
     // $DB_PASS = '123123'; // Host Password
@@ -24,7 +30,6 @@
         $conn = new PDO("mysql:host=$DB_HOST; dbname=$DB_NAME;", $DB_USER, $DB_PASS); 
         // check and create if Tables do not exists
         for ($i = 0; $i < count($DB_TABLES); $i++) {
-            echo "The number is: $DB_TABLES[$i] <br>";
             $dbs = $conn->query("CREATE TABLE IF NOT EXISTS $DB_TABLES[$i] (
                 id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
                 name VARCHAR(100) NOT NULL,
@@ -36,8 +41,4 @@
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage() . "</br>";
     }
-
-    // 
-    $dbs = $conn->query("SHOW TABLES LIKE 'users'"); 
-    echo count($dbs->fetchAll());
 ?>
