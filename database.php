@@ -7,6 +7,8 @@
     $DB_USER = 'root'; // Host Username
     $DB_PASS = ''; // Host Password
     $DB_NAME = 'myDB'; // Database name
+
+    $DB_TABLES = array("users");
     
     try {
         // PDO Connection
@@ -18,9 +20,18 @@
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
         // create Database if not exists
         $dbs = $conn->query("CREATE DATABASE IF NOT EXISTS  $DB_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci"); 
-
+        // reconnect PDO with Database
         $conn = new PDO("mysql:host=$DB_HOST; dbname=$DB_NAME;", $DB_USER, $DB_PASS); 
-        
+        // check and create if Tables do not exists
+        for ($i = 0; $i < count($DB_TABLES); $i++) {
+            echo "The number is: $DB_TABLES[$i] <br>";
+            $dbs = $conn->query("CREATE TABLE IF NOT EXISTS $DB_TABLES[$i] (
+                id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(100) NOT NULL,
+                password VARCHAR(50) NOT NULL,
+                email VARCHAR(100) NOT NULL
+            )"); 
+        }
         echo "Connected successfully</br>";
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage() . "</br>";
