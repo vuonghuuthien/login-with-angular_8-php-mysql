@@ -13,9 +13,8 @@ export class ApiService {
   baseUrl: string = "http://localhost:8080/php/Login%20with%20Angular,%20PHP,%20MySQL/angular-admin/php";
   @Output() getLoggedInName: EventEmitter<any> = new EventEmitter();
   constructor(private httpClient: HttpClient) { }
-  public userlogin(username, password) {
-    alert(username)
-    return this.httpClient.post<any>(this.baseUrl + '/login.php', { username, password })
+  public userlogin(email, password) {
+    return this.httpClient.post<any>(this.baseUrl + '/login.php', { email, password })
       .pipe(map(Users => {
         this.setToken(Users[0].name);
         this.getLoggedInName.emit(true);

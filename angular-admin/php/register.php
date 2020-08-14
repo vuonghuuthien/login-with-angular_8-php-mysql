@@ -11,21 +11,19 @@
 
         $sql = "INSERT INTO users(name,password,email) VALUES (:name, :pwd, :email)";
         $pre = $conn->prepare($sql); // prepare the query
-        $pre->bindParam(':name', $name, PDO::PARAM_STR, 100);
-        $pre->bindParam(':pwd', $pwd, PDO::PARAM_STR, 50);
-        $pre->bindParam(':email', $email, PDO::PARAM_STR, 100);
-        $pre->execute();
+        $pre->bindParam(':name', $name, PDO::PARAM_STR);
+        $pre->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+        $pre->bindParam(':email', $email, PDO::PARAM_STR);
 
-        // if ($conn->query($sql) === TRUE) {
-        //     $authdata = [
-        //         'name' => $name,
-        //         'pwd' => '',
-        //         'email' => $email,
-        //         'Id' => mysqli_insert_id($conn)
-        //     ];
-        //     echo json_encode($authdata);
-        //     echo "----Hello----";
-        // }
+        if ($pre->execute() == TRUE) {
+            $authdata = [
+                'name' => $name,
+                'pwd' => '',
+                'email' => $email,
+                'Id' => $conn->lastInsertId()
+            ];
+            echo json_encode($authdata);
+        }
     }
 
 ?>

@@ -30,7 +30,7 @@
                 email VARCHAR(100) NOT NULL
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1"); 
         }
-        echo "Connected successfully</br>";
+        // echo "Connected successfully</br>";
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage() . "</br>";
     }
