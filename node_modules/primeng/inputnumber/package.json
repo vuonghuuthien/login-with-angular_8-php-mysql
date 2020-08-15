@@ -1,0 +1,13 @@
+{
+  "main": "../bundles/primeng-inputnumber.umd.js",
+  "module": "../fesm5/primeng-inputnumber.js",
+  "es2015": "../fesm2015/primeng-inputnumber.js",
+  "esm5": "../esm5/inputnumber/primeng-inputnumber.js",
+  "esm2015": "../esm2015/inputnumber/primeng-inputnumber.js",
+  "fesm5": "../fesm5/primeng-inputnumber.js",
+  "fesm2015": "../fesm2015/primeng-inputnumber.js",
+  "typings": "primeng-inputnumber.d.ts",
+  "metadata": "primeng-inputnumber.metadata.json",
+  "sideEffects": false,
+  "name": "primeng/inputnumber"
+}
