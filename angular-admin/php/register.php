@@ -1,12 +1,14 @@
 <?php
     include_once("database.php");
+    include_once("config.php");
+    // $SALT, $STATIC_SALT // In config.php
     $postdata = file_get_contents("php://input");
     if(isset($postdata) && !empty($postdata)) {
         $request = json_decode($postdata);
         // $name = mysql_real_escape_string($conn, $request->name); // for mysqli
         // $name = $conn->quote(trim($request->name)); // Have ' '
         $name = trim($request->name);
-        $pwd = trim($request->pwd);
+        $pwd = md5($STATIC_SALT.trim($request->pwd).$SALT);
         $email = trim($request->email);
 
         $sql = "INSERT INTO users(name,password,email) VALUES (:name, :pwd, :email)";
