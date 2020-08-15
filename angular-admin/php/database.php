@@ -17,6 +17,9 @@
         $conn = new PDO("mysql:host=$DB_HOST", $DB_USER, $DB_PASS);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+        // PDO::MYSQL_ATTR_INIT_COMMAND can not be set with PDO::setAttribute() after you've established your database connection
+        // $conn->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES 'utf8'"); 
+        $conn->exec("SET NAMES 'utf8';");
         // create Database if not exists
         $dbs = $conn->query("CREATE DATABASE IF NOT EXISTS  $DB_NAME DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci"); 
         // reconnect PDO with Database
