@@ -1,14 +1,13 @@
 <?php
+    include_once("config.php");
+
     header("Access-Control-Allow-Origin: *");
     header('Access-Control-Allow-Credentials: true');
     header("Access-Control-Allow-Methods: PUT, GET, POST, DELETE");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
     header("Content-Type: application/json; charset=UTF-8");
 
-    $DB_HOST = 'localhost'; // Host name //localhost
-    $DB_USER = 'root'; // Host Username
-    $DB_PASS = ''; // Host Password
-    $DB_NAME = 'myDB'; // Database name
+    // $DB_HOST, $DB_USER, $DB_PASS, $DB_NAME // In config.php
 
     $DB_TABLES = array("users");
     

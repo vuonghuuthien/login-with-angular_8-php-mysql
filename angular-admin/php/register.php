@@ -23,6 +23,8 @@
                 'Id' => $conn->lastInsertId()
             ];
             echo json_encode($authdata);
+        } else {
+            http_response_code(404);
         }
     }
 
