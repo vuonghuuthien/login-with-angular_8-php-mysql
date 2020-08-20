@@ -2,6 +2,7 @@
     include_once("database.php");
     include_once("config.php");
     // $SALT, $STATIC_SALT // In config.php
+    include_once("base64url.php");
     $postdata = file_get_contents("php://input");
     if(isset($postdata) && !empty($postdata)) {
         $request = json_decode($postdata);
@@ -16,9 +17,11 @@
             while ($row = $pre->fetch(PDO::FETCH_ASSOC)) {
                 $rows[] = $row;
             }
+            http_response_code(200);
             echo json_encode($rows);
         } else {
-            http_response_code(404);
+            http_response_code(401);
+            echo json_encode(array("message" => "Login failed."));
         }
     }
 ?>

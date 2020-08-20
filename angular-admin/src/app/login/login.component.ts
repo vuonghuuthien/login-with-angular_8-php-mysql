@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log(error);
-          alert("User name or password is incorrect")
+          alert("User username or password is incorrect")
         });
   }
   get email() { return this.angForm.get('email'); }
